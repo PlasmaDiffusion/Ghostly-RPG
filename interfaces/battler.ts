@@ -1,3 +1,4 @@
+import { Image } from "react-native";
 import StatusEffects from "./statusEffects";
 
 interface Battler {
@@ -8,6 +9,11 @@ interface Battler {
     attack: number;
     defense: number;
     status: StatusEffects[];
+    
+    sprite: Image;
+
+    exp: number;
+    nextLevel: number;
 
 }
 
