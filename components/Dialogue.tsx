@@ -8,23 +8,28 @@ import { Text, View } from "./Themed";
 
 interface Props {
   text: string;
-  onPress: ()=> any;
+  waitTime: number;
+  onPress?: ()=> any;
 }
 
-export default function Dialogue({ text }: Props) {
-  const [open, setOpen] = useState(true);
 
-  if (!open) return <></>;
+
+export default function Dialogue({ text, waitTime, onPress=()=>{close()} }: Props) {
+  const [message, setMessage] = useState(text);
+
+  function close()
+  {
+    setMessage("");
+  }
+
+  if (message==="") return <></>;
 
   return (
     <View style={{ borderWidth: 1, borderColor: "grey" }}>
       <Text>{text}</Text>
       <View style={{ padding: "20%" }} />
       <Button
-        onPress={() => {
-          //Alert.alert('Pressed');
-          setOpen(false);
-        }}
+        onPress={onPress}
         title="Ok"
         color="#241584"
         accessibilityLabel="Learn more about this purple button"
